@@ -1,0 +1,25 @@
+.cards-container{
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.card{
+  display: flex;
+  width: 94%;
+  height: 170px;
+  background-color: #ffffffbd; 
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 4% 3%;
+  padding: 2%;
+}
+
+.pokemondisplay{
+  width: 100%;
+}
