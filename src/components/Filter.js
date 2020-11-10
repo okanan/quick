@@ -7,24 +7,25 @@ export default class Filter extends Component {
     loading: false,
     error: null,
     data: {
+      results: [],
     }
   }
 
   componentDidMount(){
     this.fetchTypes();
-    this.fetchColors();
-    this.fetchGenders();
+    // this.fetchColors();
+    // this.fetchGenders();
   };
 
   fetchTypes = async () => {
     const typesResponse = await fetch('https://pokeapi.co/api/v2/type');
     const datatypes = await typesResponse.json();
-    console.log(datatypes);
+    // console.log(datatypes);
 
     this.setState({data: datatypes})
   }
-  fetchColors = async () => {}
-  fetchGenders = async () => {}
+  // fetchColors = async () => {}
+  // fetchGenders = async () => {}
 
 
   // fetchTypes = async () => {
@@ -58,14 +59,21 @@ export default class Filter extends Component {
         <div className="type-filter">
           <p>Type</p>
           <hr/>
-          <ul>
-            {this.state.data.results.map(type => (
-                <li className="col-6 col-md-3" key={type.id}>
-                  <h1>{type.name}</h1>
+          <div className="typeoptions">
+            <ul>
+              {this.state.data.results.map( type => (
+                <li key={type.id}>
+                  <label>
+                    <input type="checkbox" id={type.id} className="col-6 col-md-3"  value={type.name}/>
+                    {type.name}
+                  </label>
+                  
                 </li>
-              ))
-            }
-          </ul>
+                ))
+              }          
+            </ul>
+        
+          </div>          
         </div>
         <div className="color-filter">
           <p>Color</p>
@@ -78,5 +86,5 @@ export default class Filter extends Component {
       </div>
       </>
     )
-  }
-}
+  };
+};

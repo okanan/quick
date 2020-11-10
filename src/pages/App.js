@@ -1,24 +1,50 @@
+import React from 'react';
 import './App.css';
 import Navbar from '../components/Navbar'
 import Filter from '../components/Filter'
 import Characters from '../components/Characters'
+import Charactersclass from '../components/Charactersclass'
+import Search from '../components/Search'
 
-function App() {
-  return (
-    <>
-      <div className="container">
-        <div className="navbar">
-          <Navbar/>
-        </div>
-        <div className="filter">
-          <Filter/>  
-        </div>
+export default class App extends React.Component {
+
+  state = {
+    search:false,
+  };
+
+  handleChange = (e) => {
+    this.setState({input: e.target.value,search: true})
+  }
+
+  render(){
+    if(this.state.search){
+      return(
         <div className="characters">
           <Characters/>
         </div>
-      </div>
-    </>
-  );
+      )
+    }else{
+      <div className="characters">
+          <Search/>
+        </div>
+    }
+    return (
+      <>
+        <div className="container">
+          <div className="navbar">
+            <Navbar onChange={this.handleChange}/>
+          </div>
+          <div className="filter">
+            <Filter/>  
+          </div>
+          <div className="characters">
+            <Characters/>
+            <Charactersclass/>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
-export default App;
+// export default App;
