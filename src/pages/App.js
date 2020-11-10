@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from '../components/Navbar'
 import Filter from '../components/Filter'
 import Characters from '../components/Characters'
-import Charactersclass from '../components/Charactersclass'
 import Search from '../components/Search'
 
 export default class App extends React.Component {
@@ -32,14 +31,13 @@ export default class App extends React.Component {
       <>
         <div className="container">
           <div className="navbar">
-            <Navbar onChange={this.handleChange}/>
+            <Navbar />
           </div>
           <div className="filter">
             <Filter/>  
           </div>
           <div className="characters">
             <Characters/>
-            <Charactersclass/>
           </div>
         </div>
       </>

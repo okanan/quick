@@ -8,13 +8,16 @@ export default class Filter extends Component {
     error: null,
     data: {
       results: [],
+    },
+    gender: {
+      results: [],
     }
   }
 
   componentDidMount(){
     this.fetchTypes();
     // this.fetchColors();
-    // this.fetchGenders();
+    this.fetchGenders();
   };
 
   fetchTypes = async () => {
@@ -25,27 +28,14 @@ export default class Filter extends Component {
     this.setState({data: datatypes})
   }
   // fetchColors = async () => {}
-  // fetchGenders = async () => {}
+  fetchGenders = async () => {
+    const genderRes = await fetch('https://pokeapi.co/api/v2/gender');
+    const genderData = await genderRes.json();
+    console.log(genderData);
+    this.setState({gender: genderData})
+  }
 
 
-  // fetchTypes = async () => {
-  //   this.setState({loading: true, error: null})
-  //   try {     
-  //     const res = await fetch('https://pokeapi.co/api/v2/type');
-  //     const type = await res.json();
-  //     console.log(type.results);
-
-
-  //     this.setState({loading: false, error: null, types: type.results})
-
-  //     console.log(this.state);
-
-  //   } catch (error) {
-  //     this.setState({loading: false, error: error})
-      
-  //   }
-
-  // }
 
 
   render() {
@@ -82,6 +72,18 @@ export default class Filter extends Component {
         <div className="gender-filter">
           <p>Gender</p>
           <hr/>
+          <ul>
+              {this.state.gender.results.map( type => (
+                <li key={type.id}>
+                  <label>
+                    <input type="checkbox" id={type.id} className="col-6 col-md-3"  value={type.name}/>
+                    {type.name}
+                  </label>
+                  
+                </li>
+                ))
+              }          
+            </ul>
         </div>
       </div>
       </>
